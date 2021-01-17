@@ -121,6 +121,9 @@
 
   * После запуска контейнеров выполнить ```docker exec -t -i testtask_tarantool_1 console```
   * Скопировать и выполнить скрипт из файла ```./build/tarantool/startScript.lua```
+  * Завершить команду docker-compose, затем снова запустить все контейнеры
+    
+
   * Если надо удалить таблицу: ```box.space.statuses:drop()```
   * Если надо посмотреть кол-во записей: ```box.space.statuses:count()```
   * Если надо посмотреть записи: ```box.space.statuses:select()```
