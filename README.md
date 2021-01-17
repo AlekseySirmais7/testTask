@@ -154,7 +154,7 @@ Sleep-ы добавлены на уровне логики в метод AddProd
 
 Запуск: ```docker-compose up```
 
-Наполнение базы: ```./insert_update_3000000_lines.sh```
+Наполнение базы: ```./build/postgres/insert_update_3000000_lines.sh```
 
 Сборка после изменений: ```go fmt ./... && docker-compose build  && docker-compose up```
 
