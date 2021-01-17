@@ -1,0 +1,45 @@
+version: '3'
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: build/GolangServer.Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - pg
+    restart: always
+
+
+  nginx:
+    build:
+      context: ./build/nginx
+      dockerfile: ./Dockerfile
+    ports:
+      - 80:8989
+    depends_on:
+      - app
+    restart: always
+
+
+  pg:
+    build: ./build/postgres
+    ports:
+    - 5432:5432
+    container_name: "postgres"
+    volumes:
+      - /home/pg_data:/var/lib/postgresql/data/pgdata
+    depends_on:
+      - tarantool
+    restart: always
+
+  tarantool:
+    image: tarantool/tarantool:2.6.2
+    environment:
+      - TARANTOOL_USER_NAME=admin
+      - TARANTOOL_USER_PASSWORD=admin
+
+    ports:
+      - "3301:3301"
+    restart: always
